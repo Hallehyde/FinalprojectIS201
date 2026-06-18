@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guessing Game</title>
+
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Arial;
+            text-align: center;
+        }
+
+        .gamebox {
+            background-color: white;
+            border: 3px solid navy;
+            padding: 20px;
+            margin: 30px auto;
+            width: 400px;
+        }
+
+        button {
+            background-color: navy;
+            color: white;
+            padding: 8px;
+        }
+
+        input {
+            padding: 8px;
+        }
+
+        #answer {
+            font-weight: bold;
+            color: darkred;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="gamebox">
+    <h1>Number Guessing Game</h1>
+
+    <p>I am thinking of a number between 1 and 10.</p>
+
+    <input type="number" id="guess">
+
+    <button onclick="checkGuess()">Guess</button>
+    <button onclick="restart()">Restart</button>
+
+    <p id="answer">Type a number and click guess.</p>
+
+    <p>Guesses: <span id="count">0</span></p>
+
+    <a href="scratch.html">Back to Scratch Page</a>
+    <br>
+    <a href="index.html">Back to Resume</a>
+</div>
+
+<script>
+    var number = Math.floor(Math.random() * 10) + 1;
+    var guesses = 0;
+
+    function checkGuess() {
+        var userGuess = document.getElementById("guess").value;
+        guesses = guesses + 1;
+        document.getElementById("count").innerHTML = guesses;
+
+        if (userGuess == number) {
+            document.getElementById("answer").innerHTML = "You got it!";
+        }
+
+        if (userGuess < number) {
+            document.getElementById("answer").innerHTML = "Too low.";
+        }
+
+        if (userGuess > number) {
+            document.getElementById("answer").innerHTML = "Too high.";
+        }
+    }
+
+    function restart() {
+        number = Math.floor(Math.random() * 10) + 1;
+        guesses = 0;
+        document.getElementById("count").innerHTML = guesses;
+        document.getElementById("answer").innerHTML = "Type a number and click guess.";
+        document.getElementById("guess").value = "";
+    }
+</script>
+
+</body>
+</html>
